@@ -1,0 +1,42 @@
+model_args:
+  model_type: "mistral"
+  model_name: "mistralai/Mistral-7B-v0.1"
+  k_name: "self_attn.k_proj"
+  q_name: "self_attn.q_proj"
+  v_name: "self_attn.v_proj"
+  o_name: "self_attn.o_proj"
+  up_name: "mlp.up_proj"
+  down_name: "mlp.down_proj"
+  gate_name: "mlp.gate_proj"
+  group_size: 2
+  compression_ratio: 20
+  context_length: 2048
+  stride: 2048
+  share_part:
+    - "q"
+    - "up"
+    - "gate"
+  private_part:
+    - "down"
+    - "v"
+    - "k"
+    - "o"
+
+calibration_args:
+  dataset_name: "wikitext"
+  build_calib: false
+  calib_path: "./calib/mistral_7b/wikitext/"
+  dataset_cache_dir: null
+  calibration_size: 256
+  calib_batch_size: 16
+
+after_calibration_update_args:
+  update_calib_path: ""
+  build_update_calib: false
+  update: false
+
+model_saving:
+  save_updated_model: false
+  updated_model_path: "./updated_model/share_mistral-7b_20/wikitext"
+  save_untrained_model: true
+  untrained_model_path: "./untrained_model/share_mistral-7b_20/wikitext"

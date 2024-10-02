@@ -1,0 +1,29 @@
+model_args:
+  model_type: "gpt2"
+  model_name: "gpt2"
+  attn_name: "attn.c_attn"
+  o_name: "attn.c_proj"
+  up_name: "mlp.c_fc"
+  down_name: "mlp.c_proj"
+  group_size: 2
+  compression_ratio: 20
+  context_length: 1024
+  stride: 1024
+  share_part:
+    - "attn"
+    - "up"
+    - "o"
+  private_part:
+    - "down"
+
+calibration_args:
+  dataset_name: "wikitext"
+  build_calib: false
+  calib_path: "./calib/gpt2/wikitext"
+  dataset_cache_dir: null
+  calibration_size: 256
+  calib_batch_size: 64
+
+model_saving:
+  save_untrained_model: true
+  untrained_model_path: "./untrained_model/share_gpt2_20/wikitext"

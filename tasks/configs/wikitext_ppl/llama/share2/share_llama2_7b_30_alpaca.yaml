@@ -1,0 +1,53 @@
+model_args:
+  model_type: "llama2"
+  model_name: "meta-llama/Llama-2-7b-hf"
+  k_name: "self_attn.k_proj"
+  q_name: "self_attn.q_proj"
+  v_name: "self_attn.v_proj"
+  o_name: "self_attn.o_proj"
+  up_name: "mlp.up_proj"
+  down_name: "mlp.down_proj"
+  gate_name: "mlp.gate_proj"
+  group_size: 2
+  compression_ratio: 30
+  context_length: 2048
+  stride: 2048
+  share_part:
+    - "v"
+    - "k"
+    - "q"
+    - "up"
+    - "gate"
+  private_part:
+    - "down"
+    - "o"
+
+calibration_args:
+  dataset_name: "alpaca"
+  build_calib: false
+  calib_path: "./calib/llama2-7b/alpaca/"
+  dataset_cache_dir: null
+  calibration_size: 256
+  calib_batch_size: 16
+
+after_calibration_update_args:
+  update_calib_path: "./calib/llama-7b/alpaca/4update/share_llama2-7b_30"
+  build_update_calib: false
+  update: false
+
+
+model_saving:
+  save_updated_model: false
+  updated_model_path: "./updated_model/share_llama2-7b_30/alpaca"
+  save_untrained_model: true
+  untrained_model_path: "./untrained_model/share_llama2-7b_30/alpaca"
+
+lora_args:
+  save_lora: true
+  lora_r: 8
+  lora_alpha: 32
+  lora_output_dir: "./lora/share_llama2-7b_30/alpaca"
+  lora_train_batch_size: 1
+  lora_learning_rate: 1.e-4
+  lora_train_epoch: 2
+  lora_run_name: "share_llama2-7b_30"

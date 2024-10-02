@@ -1,0 +1,40 @@
+model_args:
+  model_type: "opt"
+  model_name: "facebook/opt-6.7b"
+  k_name: "self_attn.k_proj"
+  q_name: "self_attn.q_proj"
+  v_name: "self_attn.v_proj"
+  o_name: "self_attn.out_proj"
+  up_name: "fc1"
+  down_name: "fc2"
+  group_size: 2
+  compression_ratio: 40
+  context_length: 2048
+  stride: 2048
+  share_part:
+    - "k"
+    - "q"
+    - "v"
+    - "up"
+  private_part:
+    - "down"
+    - "o"
+
+calibration_args:
+  dataset_name: "c4"
+  build_calib: false
+  calib_path: "./calib/opt-6.7b/wikitext/"
+  dataset_cache_dir: "~/.cache/huggingface/datasets/c4"
+  calibration_size: 256
+  calib_batch_size: 16
+
+after_calibration_update_args:
+  update_calib_path: "./calib/opt-6.7b/ptb/4update/share_opt-6.7b_40"
+  build_update_calib: false
+  update: false
+
+model_saving:
+  save_updated_model: true
+  updated_model_path: "./updated_model/share_opt-6.7b_40/wikitext"
+  save_untrained_model: true
+  untrained_model_path: "./untrained_model/share_opt-6.7b_40/wikitext"
