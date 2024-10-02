@@ -29,3 +29,15 @@ python test_adapter.py --cf tasks/configs/wikitext_ppl/llama/share2/share_llama_
 ~~~
 python test_throughput.py --cf tasks/configs/wikitext_ppl/llama/share2/share_llama_7b_20.yaml
 ~~~
+Reference
+
+@misc{{parametersharing2024,
+
+title={Basis Sharing: Cross-Layer Parameter Sharing for Large Language Model Compression},
+
+author={Jingcun Wang and Yu-Guang Chen and Ing-Chao Lin and Bing Li and Grace Li Zhang},
+
+archivePrefix={arXiv},
+
+year={2024} 
+}
