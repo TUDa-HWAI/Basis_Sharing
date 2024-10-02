@@ -30,7 +30,7 @@ python test_adapter.py --cf tasks/configs/wikitext_ppl/llama/share2/share_llama_
 python test_throughput.py --cf tasks/configs/wikitext_ppl/llama/share2/share_llama_7b_20.yaml
 ~~~
 
-Reference
+## Reference 
 
 @misc{{parametersharing2024,
 
