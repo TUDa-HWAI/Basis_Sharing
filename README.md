@@ -32,13 +32,9 @@ python test_throughput.py --cf tasks/configs/wikitext_ppl/llama/share2/share_lla
 
 ## Reference 
 
-@misc{{parametersharing2024,
-
-title={Basis Sharing: Cross-Layer Parameter Sharing for Large Language Model Compression},
-
-author={Jingcun Wang and Yu-Guang Chen and Ing-Chao Lin and Bing Li and Grace Li Zhang},
-
-archivePrefix={arXiv},
-
-year={2024} 
+@inproceedings{ wang2025basis,
+  title={Basis Sharing: Cross-Layer Parameter Sharing for Large Language Model Compression},
+  author={Jingcun Wang and Yu-Guang Chen and Ing-Chao Lin and Bing Li and Grace Li Zhang},
+  booktitle={The Thirteenth International Conference on Learning Representations (ICLR)},
+  year={2025}
 }
